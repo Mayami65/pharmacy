@@ -1,0 +1,43 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "javascript.validate.enable": false,
+    "typescript.validate.enable": false,
+    "javascript.suggest.autoImports": false,
+    "typescript.suggest.autoImports": false,
+    "files.associations": {
+      "*.blade.php": "blade",
+      "*.php": "php"
+    },
+    "emmet.includeLanguages": {
+      "blade": "html"
+    },
+    "problems.decorations.enabled": false,
+    "editor.quickSuggestions": {
+      "other": false,
+      "comments": false,
+      "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact"
+    ],
+    "eslint.workingDirectories": [
+      "."
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "onecentlin.laravel-blade",
+      "onecentlin.laravel5-snippets",
+      "onecentlin.laravel-extension-pack"
+    ]
+  }
+}

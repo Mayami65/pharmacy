@@ -1,0 +1,39 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "no-console": "off",
+    "no-undef": "off",
+    "no-unreachable": "off",
+    "no-constant-condition": "off"
+  },
+  "ignorePatterns": [
+    "resources/views/**/*.blade.php",
+    "resources/views/**/*.php",
+    "node_modules/**",
+    "vendor/**",
+    "storage/**",
+    "bootstrap/**"
+  ],
+  "overrides": [
+    {
+      "files": ["*.blade.php"],
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off",
+        "no-console": "off"
+      }
+    }
+  ]
+}

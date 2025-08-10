@@ -1,0 +1,2 @@
+# Ignore Blade template files for JavaScript linting
+resources/views/**/*.blade.php
