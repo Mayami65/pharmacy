@@ -22,12 +22,51 @@
                     <x-nav-link :href="route('sales.pos')" :active="request()->routeIs('sales.*') || request()->routeIs('pos')">
                         {{ __('Point of Sale') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('analytics.index')" :active="request()->routeIs('analytics.*')">
-                        {{ __('Analytics') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
-                        {{ __('Reports') }}
-                    </x-nav-link>
+                    @if(auth()->user()->canViewAnalytics())
+                        <x-nav-link :href="route('analytics.index')" :active="request()->routeIs('analytics.*')">
+                            {{ __('Analytics') }}
+                        </x-nav-link>
+                    @endif
+                    
+                    @if(auth()->user()->canGenerateReports())
+                        <!-- Reports Dropdown -->
+                    <div class="relative">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <div>📊 Reports</div>
+
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('reports.sales')">
+                                    📈 Sales Reports
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('reports.inventory')">
+                                    📦 Inventory Reports
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('reports.financial')">
+                                    💰 Financial Reports
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('reports.performance')">
+                                    ⚡ Performance Reports
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                    @endif
+                    
+                    @if(auth()->user()->canManageStaff())
+                        <x-nav-link :href="route('staff.index')" :active="request()->routeIs('staff.*')">
+                            {{ __('Staff Management') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -84,17 +123,13 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('drugs.index')" :active="request()->routeIs('drugs.*')">
-                {{ __('Drug Inventory') }}
+                {{ __('Drugs') }}
             </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('sales.pos')" :active="request()->routeIs('sales.*') || request()->routeIs('pos')">
-                {{ __('Point of Sale') }}
+            <x-responsive-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.*')">
+                {{ __('Sales') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('analytics.index')" :active="request()->routeIs('analytics.*')">
-                {{ __('Analytics') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
-                {{ __('Reports') }}
+            <x-responsive-nav-link :href="route('sales.pos')" :active="request()->routeIs('sales.pos')">
+                {{ __('POS') }}
             </x-responsive-nav-link>
         </div>
 
@@ -120,6 +155,27 @@
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+            </div>
+
+            <!-- Reports Section -->
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="px-4">
+                    <div class="font-medium text-base text-gray-800">📊 Reports</div>
+                </div>
+                <div class="mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('reports.sales')">
+                        📈 Sales Reports
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('reports.inventory')">
+                        📦 Inventory Reports
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('reports.financial')">
+                        💰 Financial Reports
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('reports.performance')">
+                        ⚡ Performance Reports
+                    </x-responsive-nav-link>
+                </div>
             </div>
         </div>
     </div>

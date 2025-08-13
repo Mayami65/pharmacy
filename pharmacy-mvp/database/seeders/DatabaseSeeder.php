@@ -13,14 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create test admin user
-        User::factory()->create([
-            'name' => 'Pharmacy Admin',
-            'email' => 'admin@ikehorn.com',
-        ]);
-
-        // Seed drug data
+        // Seed users and roles
         $this->call([
+            ManagerSeeder::class,
             DrugSeeder::class,
         ]);
     }

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1D4ED8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="frontendGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="backendGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#F8FAFC"/>
+  
+  <!-- Title -->
+  <rect x="0" y="0" width="1000" height="60" fill="url(#headerGrad)"/>
+  <text x="500" y="35" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">
+    Pharmacy Management System Architecture
+  </text>
+  
+  <!-- Frontend Layer -->
+  <rect x="50" y="80" width="900" height="120" rx="10" fill="url(#frontendGrad)"/>
+  <text x="500" y="100" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    Frontend Layer (Tailwind CSS + Alpine.js)
+  </text>
+  
+  <!-- Frontend Components -->
+  <rect x="80" y="120" width="120" height="60" rx="5" fill="white"/>
+  <text x="140" y="145" text-anchor="middle" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Dashboard</text>
+  <text x="140" y="160" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Main Overview</text>
+  
+  <rect x="220" y="120" width="120" height="60" rx="5" fill="white"/>
+  <text x="280" y="145" text-anchor="middle" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="bold">POS System</text>
+  <text x="280" y="160" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Sales Interface</text>
+  
+  <rect x="360" y="120" width="120" height="60" rx="5" fill="white"/>
+  <text x="420" y="145" text-anchor="middle" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Inventory</text>
+  <text x="420" y="160" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Drug Management</text>
+  
+  <rect x="500" y="120" width="120" height="60" rx="5" fill="white"/>
+  <text x="560" y="145" text-anchor="middle" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Reports</text>
+  <text x="560" y="160" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Analytics</text>
+  
+  <rect x="640" y="120" width="120" height="60" rx="5" fill="white"/>
+  <text x="700" y="145" text-anchor="middle" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="bold">User Mgmt</text>
+  <text x="700" y="160" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Authentication</text>
+  
+  <rect x="780" y="120" width="120" height="60" rx="5" fill="white"/>
+  <text x="840" y="145" text-anchor="middle" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Export</text>
+  <text x="840" y="160" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Excel/PDF</text>
+  
+  <!-- Backend Layer -->
+  <rect x="50" y="220" width="900" height="120" rx="10" fill="url(#backendGrad)"/>
+  <text x="500" y="240" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    Backend Layer (Laravel 12 + PHP 8.2+)
+  </text>
+  
+  <!-- Backend Components -->
+  <rect x="80" y="260" width="120" height="60" rx="5" fill="white"/>
+  <text x="140" y="285" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Controllers</text>
+  <text x="140" y="300" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Business Logic</text>
+  
+  <rect x="220" y="260" width="120" height="60" rx="5" fill="white"/>
+  <text x="280" y="285" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Models</text>
+  <text x="280" y="300" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Data Models</text>
+  
+  <rect x="360" y="260" width="120" height="60" rx="5" fill="white"/>
+  <text x="420" y="285" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Blade Views</text>
+  <text x="420" y="300" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Templates</text>
+  
+  <rect x="500" y="260" width="120" height="60" rx="5" fill="white"/>
+  <text x="560" y="285" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Middleware</text>
+  <text x="560" y="300" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Auth & Security</text>
+  
+  <rect x="640" y="260" width="120" height="60" rx="5" fill="white"/>
+  <text x="700" y="285" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Routes</text>
+  <text x="700" y="300" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">URL Mapping</text>
+  
+  <rect x="780" y="260" width="120" height="60" rx="5" fill="white"/>
+  <text x="840" y="285" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Services</text>
+  <text x="840" y="300" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Business Logic</text>
+  
+  <!-- Database Layer -->
+  <rect x="50" y="360" width="900" height="120" rx="10" fill="url(#dbGrad)"/>
+  <text x="500" y="380" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    Database Layer (MySQL + Eloquent ORM)
+  </text>
+  
+  <!-- Database Tables -->
+  <rect x="80" y="400" width="120" height="60" rx="5" fill="white"/>
+  <text x="140" y="425" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Drugs</text>
+  <text x="140" y="440" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Inventory Data</text>
+  
+  <rect x="220" y="400" width="120" height="60" rx="5" fill="white"/>
+  <text x="280" y="425" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Sales</text>
+  <text x="280" y="440" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Transactions</text>
+  
+  <rect x="360" y="400" width="120" height="60" rx="5" fill="white"/>
+  <text x="420" y="425" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Sale Items</text>
+  <text x="420" y="440" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Line Items</text>
+  
+  <rect x="500" y="400" width="120" height="60" rx="5" fill="white"/>
+  <text x="560" y="425" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Users</text>
+  <text x="560" y="440" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Staff Data</text>
+  
+  <rect x="640" y="400" width="120" height="60" rx="5" fill="white"/>
+  <text x="700" y="425" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Migrations</text>
+  <text x="700" y="440" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Schema</text>
+  
+  <rect x="780" y="400" width="120" height="60" rx="5" fill="white"/>
+  <text x="840" y="425" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Seeders</text>
+  <text x="840" y="440" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Test Data</text>
+  
+  <!-- System Features -->
+  <rect x="50" y="500" width="900" height="120" rx="10" fill="#EF4444"/>
+  <text x="500" y="520" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+    System Features & Modules
+  </text>
+  
+  <!-- Feature Components -->
+  <rect x="80" y="540" width="120" height="60" rx="5" fill="white"/>
+  <text x="140" y="565" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Authentication</text>
+  <text x="140" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Laravel Breeze</text>
+  
+  <rect x="220" y="540" width="120" height="60" rx="5" fill="white"/>
+  <text x="280" y="565" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="12" font-weight="bold">POS System</text>
+  <text x="280" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Sales Processing</text>
+  
+  <rect x="360" y="540" width="120" height="60" rx="5" fill="white"/>
+  <text x="420" y="565" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Inventory Mgmt</text>
+  <text x="420" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Stock Tracking</text>
+  
+  <rect x="500" y="540" width="120" height="60" rx="5" fill="white"/>
+  <text x="560" y="565" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Reports</text>
+  <text x="560" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Analytics</text>
+  
+  <rect x="640" y="540" width="120" height="60" rx="5" fill="white"/>
+  <text x="700" y="565" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Export</text>
+  <text x="700" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Excel/PDF</text>
+  
+  <rect x="780" y="540" width="120" height="60" rx="5" fill="white"/>
+  <text x="840" y="565" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Notifications</text>
+  <text x="840" y="580" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Alerts</text>
+  
+  <!-- Data Flow Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#374151"/>
+    </marker>
+  </defs>
+  
+  <!-- Frontend to Backend -->
+  <line x1="140" y1="180" x2="140" y2="260" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="280" y1="180" x2="280" y2="260" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="420" y1="180" x2="420" y2="260" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="560" y1="180" x2="560" y2="260" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="700" y1="180" x2="700" y2="260" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="840" y1="180" x2="840" y2="260" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Backend to Database -->
+  <line x1="140" y1="320" x2="140" y2="400" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="280" y1="320" x2="280" y2="400" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="420" y1="320" x2="420" y2="400" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="560" y1="320" x2="560" y2="400" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="700" y1="320" x2="700" y2="400" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="840" y1="320" x2="840" y2="400" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Technology Stack -->
+  <text x="500" y="650" text-anchor="middle" fill="#374151" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+    Technology Stack: Laravel 12 | PHP 8.2+ | MySQL | Tailwind CSS | Alpine.js | Vite | Laravel Excel | Laravel Breeze
+  </text>
+</svg>

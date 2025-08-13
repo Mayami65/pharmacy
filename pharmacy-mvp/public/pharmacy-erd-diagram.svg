@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .table-box {
+        fill: #f8f9fa;
+        stroke: #495057;
+        stroke-width: 2;
+        rx: 8;
+        ry: 8;
+      }
+      .table-title {
+        fill: #495057;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        text-anchor: middle;
+      }
+      .column-text {
+        fill: #212529;
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        text-anchor: start;
+      }
+      .pk-text {
+        font-weight: bold;
+        fill: #dc3545;
+      }
+      .fk-text {
+        font-style: italic;
+        fill: #0d6efd;
+      }
+      .relationship-line {
+        stroke: #6c757d;
+        stroke-width: 2;
+        fill: none;
+        marker-end: url(#arrowhead);
+      }
+      .relationship-label {
+        fill: #6c757d;
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        text-anchor: middle;
+      }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6c757d"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#ffffff"/>
+  
+  <!-- Users Table -->
+  <rect x="50" y="50" width="200" height="180" class="table-box"/>
+  <text x="150" y="70" class="table-title">users</text>
+  <text x="60" y="90" class="column-text pk-text">PK id (int)</text>
+  <text x="60" y="105" class="column-text">name (varchar)</text>
+  <text x="60" y="120" class="column-text">email (varchar) UNIQUE</text>
+  <text x="60" y="135" class="column-text">email_verified_at (timestamp)</text>
+  <text x="60" y="150" class="column-text">password (varchar)</text>
+  <text x="60" y="165" class="column-text">remember_token (varchar)</text>
+  <text x="60" y="180" class="column-text">created_at (timestamp)</text>
+  <text x="60" y="195" class="column-text">updated_at (timestamp)</text>
+  
+  <!-- Drugs Table -->
+  <rect x="550" y="50" width="200" height="200" class="table-box"/>
+  <text x="650" y="70" class="table-title">drugs</text>
+  <text x="560" y="90" class="column-text pk-text">PK id (int)</text>
+  <text x="560" y="105" class="column-text">name (varchar)</text>
+  <text x="560" y="120" class="column-text">description (text)</text>
+  <text x="560" y="135" class="column-text">quantity (int)</text>
+  <text x="560" y="150" class="column-text">unit_price (decimal(10,2))</text>
+  <text x="560" y="165" class="column-text">expiry_date (date)</text>
+  <text x="560" y="180" class="column-text">low_stock_threshold (int)</text>
+  <text x="560" y="195" class="column-text">batch_number (varchar)</text>
+  <text x="560" y="210" class="column-text">manufacturer (varchar)</text>
+  <text x="560" y="225" class="column-text">created_at (timestamp)</text>
+  <text x="560" y="240" class="column-text">updated_at (timestamp)</text>
+  
+  <!-- Sales Table -->
+  <rect x="50" y="350" width="300" height="200" class="table-box"/>
+  <text x="200" y="370" class="table-title">sales</text>
+  <text x="60" y="390" class="column-text pk-text">PK id (int)</text>
+  <text x="60" y="405" class="column-text">sale_number (varchar) UNIQUE</text>
+  <text x="60" y="420" class="column-text">customer_name (varchar)</text>
+  <text x="60" y="435" class="column-text">customer_phone (varchar)</text>
+  <text x="60" y="450" class="column-text">subtotal (decimal(12,2))</text>
+  <text x="60" y="465" class="column-text">discount_amount (decimal(12,2))</text>
+  <text x="60" y="480" class="column-text">tax_amount (decimal(12,2))</text>
+  <text x="60" y="495" class="column-text">total_amount (decimal(12,2))</text>
+  <text x="60" y="510" class="column-text">payment_method (enum)</text>
+  <text x="60" y="525" class="column-text">amount_paid (decimal(12,2))</text>
+  <text x="60" y="540" class="column-text">change_amount (decimal(12,2))</text>
+  <text x="60" y="555" class="column-text">status (enum)</text>
+  <text x="60" y="570" class="column-text">notes (text)</text>
+  <text x="60" y="585" class="column-text fk-text">FK served_by (int)</text>
+  <text x="60" y="600" class="column-text">created_at (timestamp)</text>
+  <text x="60" y="615" class="column-text">updated_at (timestamp)</text>
+  
+  <!-- Sale Items Table -->
+  <rect x="450" y="350" width="300" height="200" class="table-box"/>
+  <text x="600" y="370" class="table-title">sale_items</text>
+  <text x="460" y="390" class="column-text pk-text">PK id (int)</text>
+  <text x="460" y="405" class="column-text fk-text">FK sale_id (int)</text>
+  <text x="460" y="420" class="column-text fk-text">FK drug_id (int)</text>
+  <text x="460" y="435" class="column-text">quantity (int)</text>
+  <text x="460" y="450" class="column-text">unit_price (decimal(10,2))</text>
+  <text x="460" y="465" class="column-text">line_total (decimal(12,2))</text>
+  <text x="460" y="480" class="column-text">discount_amount (decimal(10,2))</text>
+  <text x="460" y="495" class="column-text">batch_number (varchar)</text>
+  <text x="460" y="510" class="column-text">expiry_date (date)</text>
+  <text x="460" y="525" class="column-text">created_at (timestamp)</text>
+  <text x="460" y="540" class="column-text">updated_at (timestamp)</text>
+  
+  <!-- Relationships -->
+  <!-- Users to Sales (1:N) -->
+  <line x1="250" y1="140" x2="350" y2="585" class="relationship-line"/>
+  <text x="300" y="360" class="relationship-label">1:N</text>
+  <text x="300" y="375" class="relationship-label">served_by</text>
+  
+  <!-- Sales to Sale Items (1:N) -->
+  <line x1="350" y1="450" x2="450" y2="405" class="relationship-line"/>
+  <text x="400" y="430" class="relationship-label">1:N</text>
+  <text x="400" y="445" class="relationship-label">sale_id</text>
+  
+  <!-- Drugs to Sale Items (1:N) -->
+  <line x1="550" y1="150" x2="450" y2="420" class="relationship-line"/>
+  <text x="500" y="280" class="relationship-label">1:N</text>
+  <text x="500" y="295" class="relationship-label">drug_id</text>
+  
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#495057">Pharmacy Management System - ERD</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="580" width="700" height="80" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+  <text x="60" y="600" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#495057">Legend:</text>
+  <text x="60" y="615" class="column-text pk-text">PK - Primary Key</text>
+  <text x="60" y="630" class="column-text fk-text">FK - Foreign Key</text>
+  <text x="60" y="645" class="column-text">Regular columns</text>
+</svg>

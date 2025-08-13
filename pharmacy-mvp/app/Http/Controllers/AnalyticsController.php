@@ -225,49 +225,4 @@ class AnalyticsController extends Controller
         ));
     }
 
-    /**
-     * General reports dashboard
-     */
-    public function reports(Request $request): View
-    {
-        // Get quick stats for the reports dashboard
-        $quickStats = [
-            'total_drugs' => Drug::count(),
-            'total_sales' => Sale::where('status', 'completed')->count(),
-            'total_revenue' => Sale::where('status', 'completed')->sum('total_amount'),
-            'inventory_value' => Drug::sum(DB::raw('quantity * unit_price')),
-            'low_stock_alerts' => Drug::lowStock()->count(),
-            'expiring_soon' => Drug::expiringSoon()->count(),
-        ];
-
-        // Recent sales for quick overview
-        $recentSales = Sale::with('items.drug')
-            ->where('status', 'completed')
-            ->orderByDesc('created_at')
-            ->limit(5)
-            ->get();
-
-        // Top selling drugs
-        $topSellingDrugs = SaleItem::select(
-                'drug_id',
-                DB::raw('SUM(quantity) as total_sold'),
-                DB::raw('SUM(line_total) as revenue')
-            )
-            ->with('drug:id,name,manufacturer')
-            ->whereHas('sale', function($query) {
-                $query->where('status', 'completed');
-            })
-            ->groupBy('drug_id')
-            ->orderByDesc('total_sold')
-            ->limit(5)
-            ->get()
-            ->map(function($item) {
-                $item->name = $item->drug->name;
-                $item->manufacturer = $item->drug->manufacturer;
-                return $item;
-            });
-
-        return view('reports.index', compact('quickStats', 'recentSales', 'topSellingDrugs'));
-    }
-
 }

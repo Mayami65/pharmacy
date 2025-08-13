@@ -33,7 +33,7 @@
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                                 </svg>
-                                Drug Inventory
+                                Available Drugs
                             </h3>
                         </div>
                         
@@ -54,7 +54,7 @@
                             </div>
 
                             <!-- Drugs Grid -->
-                            <div id="drugsGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
+                            <div id="drugsGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-h-[600px] overflow-y-auto">
                                 @foreach($drugs as $drug)
                                 <div class="drug-card relative border border-gray-200 rounded-lg p-4 hover:border-blue-500 hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 hover:-translate-y-1 {{ $drug->isExpired() ? 'bg-red-50 border-red-200' : ($drug->isExpiringSoon() ? 'bg-yellow-50 border-yellow-200' : ($drug->isLowStock() ? 'bg-orange-50 border-orange-200' : 'hover:bg-blue-50')) }}"
                                       data-drug-id="{{ $drug->id }}"

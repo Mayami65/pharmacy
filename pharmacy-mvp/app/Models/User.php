@@ -21,6 +21,22 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'is_active',
+        'phone',
+        'address',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'is_active' => 'boolean',
+        'last_login_at' => 'datetime',
     ];
 
     /**
@@ -33,16 +49,91 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Check if user is a manager
+     * 
+     * @return bool
      */
-    protected function casts(): array
+    public function isManager(): bool
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->role === 'manager';
+    }
+
+    /**
+     * Check if user is a pharmacist
+     * 
+     * @return bool
+     */
+    public function isPharmacist(): bool
+    {
+        return $this->role === 'pharmacist';
+    }
+
+    /**
+     * Check if user has permission to manage staff
+     * 
+     * @return bool
+     */
+    public function canManageStaff(): bool
+    {
+        return $this->isManager();
+    }
+
+    /**
+     * Check if user has permission to manage inventory
+     */
+    public function canManageInventory(): bool
+    {
+        return $this->isManager();
+    }
+
+    /**
+     * Check if user has permission to view analytics
+     */
+    public function canViewAnalytics(): bool
+    {
+        return $this->isManager();
+    }
+
+    /**
+     * Check if user has permission to generate reports
+     */
+    public function canGenerateReports(): bool
+    {
+        return $this->isManager();
+    }
+
+    /**
+     * Check if user has permission to process sales
+     */
+    public function canProcessSales(): bool
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Update last login timestamp
+     */
+    public function updateLastLogin(): void
+    {
+        $this->update(['last_login_at' => now()]);
+    }
+
+    /**
+     * Get user's role display name
+     */
+    public function getRoleDisplayNameAttribute(): string
+    {
+        return ucfirst($this->role);
+    }
+
+    /**
+     * Get user's status display name
+     */
+    public function getStatusDisplayNameAttribute(): string
+    {
+        return $this->is_active ? 'Active' : 'Inactive';
     }
 }
