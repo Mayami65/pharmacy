@@ -59,6 +59,11 @@ class DrugController extends Controller
      */
     public function create(): View
     {
+        // Check if user can manage inventory
+        if (!auth()->user()->canManageInventory()) {
+            abort(403, 'Unauthorized action. Only managers can create drugs.');
+        }
+
         return view('drugs.create');
     }
 
@@ -67,6 +72,11 @@ class DrugController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Check if user can manage inventory
+        if (!auth()->user()->canManageInventory()) {
+            abort(403, 'Unauthorized action. Only managers can create drugs.');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -97,6 +107,11 @@ class DrugController extends Controller
      */
     public function edit(Drug $drug): View
     {
+        // Check if user can manage inventory
+        if (!auth()->user()->canManageInventory()) {
+            abort(403, 'Unauthorized action. Only managers can edit drugs.');
+        }
+
         return view('drugs.edit', compact('drug'));
     }
 
@@ -105,6 +120,11 @@ class DrugController extends Controller
      */
     public function update(Request $request, Drug $drug): RedirectResponse
     {
+        // Check if user can manage inventory
+        if (!auth()->user()->canManageInventory()) {
+            abort(403, 'Unauthorized action. Only managers can update drugs.');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -127,6 +147,11 @@ class DrugController extends Controller
      */
     public function destroy(Drug $drug): RedirectResponse
     {
+        // Check if user can manage inventory
+        if (!auth()->user()->canManageInventory()) {
+            abort(403, 'Unauthorized action. Only managers can delete drugs.');
+        }
+
         $drug->delete();
 
         return redirect()->route('drugs.index')
@@ -138,6 +163,11 @@ class DrugController extends Controller
      */
     public function exportExcel()
     {
+        // Check if user can manage inventory
+        if (!auth()->user()->canManageInventory()) {
+            abort(403, 'Unauthorized action. Only managers can export drugs.');
+        }
+
         return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\DrugsExport, 'drugs.xlsx');
     }
 
@@ -146,10 +176,13 @@ class DrugController extends Controller
      */
     public function exportPdf()
     {
+        // Check if user can manage inventory
+        if (!auth()->user()->canManageInventory()) {
+            abort(403, 'Unauthorized action. Only managers can export drugs.');
+        }
+
         $drugs = Drug::orderBy('name')->get();
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('drugs.pdf', compact('drugs'));
         return $pdf->download('drugs.pdf');
     }
-
-
 }
