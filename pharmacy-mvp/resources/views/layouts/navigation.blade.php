@@ -19,6 +19,7 @@
                         {{ __('Drug Inventory') }}
                     </x-nav-link>
 
+
                     <x-nav-link :href="route('sales.pos')" :active="request()->routeIs('sales.*') || request()->routeIs('pos')">
                         {{ __('Point of Sale') }}
                     </x-nav-link>

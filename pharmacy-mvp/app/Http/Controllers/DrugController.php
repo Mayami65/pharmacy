@@ -150,4 +150,6 @@ class DrugController extends Controller
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('drugs.pdf', compact('drugs'));
         return $pdf->download('drugs.pdf');
     }
+
+
 }

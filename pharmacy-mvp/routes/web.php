@@ -37,6 +37,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/drugs/export/excel', [DrugController::class, 'exportExcel'])->name('drugs.export.excel');
     Route::get('/drugs/export/pdf', [DrugController::class, 'exportPdf'])->name('drugs.export.pdf');
     
+
+    
     // Sales routes - All authenticated users
     Route::resource('sales', SaleController::class);
     Route::get('/pos', [SaleController::class, 'pos'])->name('sales.pos');

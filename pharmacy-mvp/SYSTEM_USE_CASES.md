@@ -39,7 +39,7 @@ Figure 4.13 enables managers to add new medications to the inventory system. The
 Figure 4.14 enables managers to update existing medication information. Changes made dynamically affect the inventory levels, pricing, and availability across the entire system, ensuring consistency in drug management.
 
 ### Pharmacist Role: 
-Process customer transactions, manage inventory, view sales history, and provide pharmaceutical services.
+Process customer transactions, view available medications and stock levels, select quantities for prescriptions, choose payment methods, confirm sales transactions, process payments, generate receipts, and track sales history.
 
 ### Figure 4.15: Pharmacist Login
 Figure 4.15 enables registered pharmacy staff to sign in. The system checks the entered email and password, and if correct, grants access to the pharmacist dashboard with appropriate permissions based on their role.
