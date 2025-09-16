@@ -6,6 +6,8 @@ use App\Models\Drug;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DrugController extends Controller
 {
@@ -19,11 +21,11 @@ class DrugController extends Controller
         // Search functionality
         if ($request->filled('search')) {
             $search = $request->get('search');
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%")
-                  ->orWhere('manufacturer', 'like', "%{$search}%")
-                  ->orWhere('batch_number', 'like', "%{$search}%");
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('manufacturer', 'like', "%{$search}%")
+                    ->orWhere('batch_number', 'like', "%{$search}%");
             });
         }
 
@@ -44,11 +46,11 @@ class DrugController extends Controller
 
         $drugs = $query->orderBy('name')->paginate(15);
 
-        // Get alert counts for dashboard
+        // Alert counts for dashboard badges
         $alerts = [
-            'low_stock' => Drug::lowStock()->count(),
-            'expired' => Drug::expired()->count(),
-            'expiring_soon' => Drug::expiringSoon()->count(),
+            'low_stock'      => Drug::lowStock()->count(),
+            'expired'        => Drug::expired()->count(),
+            'expiring_soon'  => Drug::expiringSoon()->count(),
         ];
 
         return view('drugs.index', compact('drugs', 'alerts'));
@@ -59,7 +61,6 @@ class DrugController extends Controller
      */
     public function create(): View
     {
-        // Check if user can manage inventory
         if (!auth()->user()->canManageInventory()) {
             abort(403, 'Unauthorized action. Only managers can create drugs.');
         }
@@ -72,20 +73,25 @@ class DrugController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // Check if user can manage inventory
         if (!auth()->user()->canManageInventory()) {
             abort(403, 'Unauthorized action. Only managers can create drugs.');
         }
 
+        // Trim inputs before validation
+        $request->merge([
+            'name'         => trim($request->name),
+            'manufacturer' => trim($request->manufacturer),
+        ]);
+
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'quantity' => 'required|integer|min:0',
-            'unit_price' => 'required|numeric|min:0',
-            'expiry_date' => 'nullable|date|after:today',
-            'low_stock_threshold' => 'required|integer|min:1',
-            'batch_number' => 'nullable|string|max:255',
-            'manufacturer' => 'nullable|string|max:255',
+            'name'               => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+            'description'        => 'nullable|string',
+            'quantity'           => ['required', 'integer', 'min:1'],
+            'unit_price'         => ['required', 'numeric', 'min:0.01'],
+            'expiry_date'        => 'nullable|date|after:today',
+            'low_stock_threshold'=> ['required', 'integer', 'min:1'],
+            'batch_number'       => ['nullable', 'string', 'max:255', 'regex:/^[A-Za-z0-9]+$/'],
+            'manufacturer'       => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
         ]);
 
         Drug::create($validated);
@@ -107,7 +113,6 @@ class DrugController extends Controller
      */
     public function edit(Drug $drug): View
     {
-        // Check if user can manage inventory
         if (!auth()->user()->canManageInventory()) {
             abort(403, 'Unauthorized action. Only managers can edit drugs.');
         }
@@ -120,20 +125,25 @@ class DrugController extends Controller
      */
     public function update(Request $request, Drug $drug): RedirectResponse
     {
-        // Check if user can manage inventory
         if (!auth()->user()->canManageInventory()) {
             abort(403, 'Unauthorized action. Only managers can update drugs.');
         }
 
+        // Trim inputs before validation
+        $request->merge([
+            'name'         => trim($request->name),
+            'manufacturer' => trim($request->manufacturer),
+        ]);
+
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'quantity' => 'required|integer|min:0',
-            'unit_price' => 'required|numeric|min:0',
-            'expiry_date' => 'nullable|date|after:today',
-            'low_stock_threshold' => 'required|integer|min:1',
-            'batch_number' => 'nullable|string|max:255',
-            'manufacturer' => 'nullable|string|max:255',
+            'name'               => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
+            'description'        => 'nullable|string',
+            'quantity'           => ['required', 'integer', 'min:1'],
+            'unit_price'         => ['required', 'numeric', 'min:0.01'],
+            'expiry_date'        => 'nullable|date|after:today',
+            'low_stock_threshold'=> ['required', 'integer', 'min:1'],
+            'batch_number'       => ['nullable', 'string', 'max:255', 'regex:/^[A-Za-z0-9]+$/'],
+            'manufacturer'       => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s]+$/u'],
         ]);
 
         $drug->update($validated);
@@ -147,7 +157,6 @@ class DrugController extends Controller
      */
     public function destroy(Drug $drug): RedirectResponse
     {
-        // Check if user can manage inventory
         if (!auth()->user()->canManageInventory()) {
             abort(403, 'Unauthorized action. Only managers can delete drugs.');
         }
@@ -159,30 +168,29 @@ class DrugController extends Controller
     }
 
     /**
-     * Export drugs to Excel
+     * Export drugs to Excel.
      */
     public function exportExcel()
     {
-        // Check if user can manage inventory
         if (!auth()->user()->canManageInventory()) {
             abort(403, 'Unauthorized action. Only managers can export drugs.');
         }
 
-        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\DrugsExport, 'drugs.xlsx');
+        return Excel::download(new \App\Exports\DrugsExport, 'drugs.xlsx');
     }
 
     /**
-     * Export drugs to PDF
+     * Export drugs to PDF.
      */
     public function exportPdf()
     {
-        // Check if user can manage inventory
         if (!auth()->user()->canManageInventory()) {
             abort(403, 'Unauthorized action. Only managers can export drugs.');
         }
 
         $drugs = Drug::orderBy('name')->get();
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('drugs.pdf', compact('drugs'));
+        $pdf = Pdf::loadView('drugs.pdf', compact('drugs'));
+
         return $pdf->download('drugs.pdf');
     }
 }
